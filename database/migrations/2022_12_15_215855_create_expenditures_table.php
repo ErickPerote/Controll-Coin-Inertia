@@ -19,8 +19,9 @@ return new class extends Migration
                 ->constrained()
                 ->onDelete('cascade');
             $table->string('name');
-            $table->string('type');
             $table->double('value', 13,2);
+            $table->date('due_date');
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

@@ -14,7 +14,10 @@
                                 Nome
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Type
+                                Vencimento
+                            </th>
+                            <th scope="col" class="py-3 px-6">
+                                Status
                             </th>
                             <th scope="col" class="py-3 px-6">
                                 Valor
@@ -22,15 +25,21 @@
                             <th scope="col" class="py-3 px-6"></th>
                         </tr>
                     </thead>
-                    <tbody v-for="exp in expenditure" :key="exp">
+                    <tbody v-for="exp in expenditure" :key="exp.id">
                         <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 truncate">
+                            class="border-b dark:bg-gray-800 dark:border-gray-700 truncate" :class="{ 'bg-green-300 text-black' : exp.status }">
                             <th scope="row"
                                 class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:bg-gray-800 truncate">
                                 {{ exp.name }}
                             </th>
                             <td class="py-4 px-6 truncate">
-                                {{ exp.type }}
+                                {{ exp.due_date }}
+                            </td>
+                            <td v-if="exp.status" class="py-4 px-6 truncate">
+                                Pago
+                            </td>
+                            <td v-if="!exp.status" class="py-4 px-6 truncate">
+                                Pendente 
                             </td>
                             <td class="py-4 px-6 truncate">
                                 {{ formatPrice(exp.value) }}

@@ -35,8 +35,9 @@ class ExpenditureController extends Controller
         $expenditure = new Expenditure;
 
         $expenditure->name = $request->name;
-        $expenditure->type = $request->type;
+        $expenditure->due_date = $request->due_date;
         $expenditure->value = $request->value;
+        $expenditure->status = $request->status;
 
         $user = auth()->user();
         $expenditure->user_id = $user->id;
@@ -87,8 +88,9 @@ class ExpenditureController extends Controller
     public function update(Request $request, Expenditure $expenditure)
     {
         $expenditure->name = $request->name;
-        $expenditure->type = $request->type;
         $expenditure->value = $request->value;
+        $expenditure->value = $request->value;
+        $expenditure->status = $request->status;
         $expenditure->save();
 
         return redirect()->route('expenditure.index')->with('message', 'Atualizado');

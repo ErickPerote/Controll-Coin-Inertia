@@ -14,7 +14,6 @@ class AddMoney extends Model
     protected $fillable = [
         'name',
         'value',
-        'type'
     ];
 
     public function user()

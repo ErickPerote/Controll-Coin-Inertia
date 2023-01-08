@@ -33,7 +33,6 @@ class AddMoneyController extends Controller
         $earning = new AddMoney();
 
         $earning->name = $request->name;
-        $earning->type = $request->type;
         $earning->value = $request->value;
 
         $user = auth()->user();
@@ -84,7 +83,6 @@ class AddMoneyController extends Controller
     public function update(Request $request, AddMoney $earning)
     {
         $earning->name = $request->name;
-        $earning->type = $request->type;
         $earning->value = $request->value;
         $earning->save();
 

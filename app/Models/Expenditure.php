@@ -14,7 +14,8 @@ class Expenditure extends Model
     protected $fillable = [
         'name',
         'value',
-        'type'
+        'due_date',
+        'status'
     ];
 
     public function user()

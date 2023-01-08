@@ -13,10 +13,10 @@
                                 Nome
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Type
+                                Valor
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Valor
+                                Dia-Recebimento
                             </th>
                             <th scope="col" class="py-3 px-6">
                                 <span class=""></span>
@@ -31,10 +31,10 @@
                                 {{ earning.name }}
                             </th>
                             <td class="py-4 px-6 truncate">
-                                {{ earning.type }}
+                                {{ formatPrice(earning.value) }}
                             </td>
                             <td class="py-4 px-6 truncate">
-                                {{ formatPrice(earning.value) }}
+                                {{ dayjs(earning.created_at).format("DD/MM/YYYY") }}
                             </td>
                             <td class="py-4 px-6 flex justfy-between truncate">
                                 <div class="mb-4">
@@ -66,6 +66,10 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Create from './Components/Create.vue'
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+ 
+dayjs.extend(relativeTime);
 
 const props = defineProps(['earning']);
 

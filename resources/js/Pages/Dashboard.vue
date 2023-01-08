@@ -58,23 +58,23 @@
                                 </div>
                                 <div class="col-span-12 sm:col-span-12 md:col-span-3 lg:col-span-3 xxl:col-span-3">
                                     <!-- Start Card List -->
-                                    <div @click="routeEarning()" class="relative w-full h-28 bg-white bg-center group rounded-lg overflow-hidden mt-4 shadow-lg transition duration-300 ease-in-out">
+                                    <div @click="routeExpenditure()" class="relative w-full h-28 bg-white bg-center group rounded-lg overflow-hidden mt-4 shadow-lg transition duration-300 ease-in-out">
                                         <div class="absolute inset-0 transition duration-300 ease-in-out"></div>
                                         <div class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center">
                                             <div>
-                                                <div class="text-green-400 text-lg flex space-x-2 items-center">
+                                                <div class="text-red-400 text-lg flex space-x-2 items-center">
                                                     <div class="rounded-md p-2 flex items-center">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
-                                                            fill="currentColor" class="bi bi-arrow-up-circle"
+                                                            fill="currentColor" class="bi bi-arrow-down-circle"
                                                             viewBox="0 0 16 16">
                                                             <path fill-rule="evenodd"
-                                                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                                                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
                                                         </svg>
                                                     </div>
-                                                    <p class="text-green-400">Ganhos</p>
+                                                    <p class="text-red-400">Despesas pagas</p>
                                                 </div>
-                                                <h3 class="text-green-400 ml-4 text-3xl mt-4 mb-1 font-bold">
-                                                   {{ earningCount }}
+                                                <h3 class="text-red-400 ml-4 text-3xl mt-4 mb-1 font-bold">
+                                                   R$ {{ formatPrice(expenditurePayed) }}
                                                 </h3>
                                             </div>
                                         </div>
@@ -97,7 +97,7 @@
                                                                 d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
                                                         </svg>
                                                     </div>
-                                                    <p class="text-red-300">Total Despesas</p>
+                                                    <p class="text-red-300">Valor Despesas</p>
                                                 </div>
                                                 <h3 class="text-red-300 text-3xl mt-4 mb-1 font-bold">
                                                     R$ {{ formatPrice(expenditureTotal) }}
@@ -123,7 +123,7 @@
                                                                 d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
                                                         </svg>
                                                     </div>
-                                                    <p class="text-red-300">Despesas</p>
+                                                    <p class="text-red-300">QTE Despesas</p>
                                                 </div>
                                                 <h3 class="text-red-300 ml-4 text-3xl mt-4 mb-1 font-bold">
                                                     {{ expenditureCount }}
@@ -154,6 +154,8 @@ const props = defineProps([
     'earningTotal',
     'expenditureCount',
     'earningCount',
+    'expenditureCountPayed',
+    'expenditurePayed'
 ])
 
 function formatPrice(value) {
@@ -171,6 +173,6 @@ function routeEarning() {
 
 //const profit = ref(Boolean)
 
-const loss = props.expenditureTotal > props.earningTotal;
+const loss = props.expenditurePayed > props.earningTotal;
 
 </script>
