@@ -6,8 +6,8 @@
 
         <div class=" p-1 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                <table class=" table-fixed w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 bg-green-400">
+                <table class=" table-fixed w-full text-sm text-center text-black dark:text-gray-400">
+                    <thead class="text-xs text-black uppercase dark:text-gray-400 bg-green-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
                                 Nome

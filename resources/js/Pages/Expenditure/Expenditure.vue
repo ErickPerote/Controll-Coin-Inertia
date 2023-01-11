@@ -7,8 +7,8 @@
 
         <div class=" p-1 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                <table class=" table-fixed w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-red-300 dark:bg-gray-700 dark:text-gray-400">
+                <table class=" table-fixed w-full text-sm text-center text-black bg:white">
+                    <thead class="text-xs text-black uppercase bg-red-400 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
                                 Nome
@@ -27,18 +27,19 @@
                     </thead>
                     <tbody v-for="exp in expenditure" :key="exp.id">
                         <tr
-                            class="border-b dark:bg-gray-800 dark:border-gray-700 truncate" :class="{ 'bg-green-300 text-black' : exp.status }">
+                            class="border-b bg-white dark:border-gray-700 truncate" 
+                            :class="{ 'bg-green-300 text-black' : exp.status }">
                             <th scope="row"
-                                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:bg-gray-800 truncate">
+                                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  truncate">
                                 {{ exp.name }}
                             </th>
                             <td class="py-4 px-6 truncate">
-                                {{ exp.due_date }}
+                                {{ dayjs(exp.due_date).format('YYYY/MM/DD') }}
                             </td>
                             <td v-if="exp.status" class="py-4 px-6 truncate">
                                 Pago
                             </td>
-                            <td v-if="!exp.status" class="py-4 px-6 truncate">
+                            <td v-else class="py-4 px-6 truncate">
                                 Pendente 
                             </td>
                             <td class="py-4 px-6 truncate">
@@ -73,11 +74,14 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import Create from './Components/Create.vue';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+ 
+dayjs.extend(relativeTime);
 
-const props = defineProps(['expenditure'])
+const props = defineProps(['expenditure', 'due_date'])
 
 const form = useForm();
 

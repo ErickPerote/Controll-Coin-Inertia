@@ -88,7 +88,7 @@
                                         <div class="absolute inset-0 transition duration-300 ease-in-out"></div>
                                         <div class="relative w-3/4 h-full px-4 sm:px-6 lg:px-4 flex items-center">
                                             <div>
-                                                <div class="text-red-300 text-lg flex space-x-2 items-center">
+                                                <div class="text-red-400 text-lg flex space-x-2 items-center">
                                                     <div class="rounded-md p-2 flex items-center">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                             fill="currentColor" class="bi bi-arrow-down-circle"
@@ -97,9 +97,9 @@
                                                                 d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
                                                         </svg>
                                                     </div>
-                                                    <p class="text-red-300">Valor Despesas</p>
+                                                    <p class="text-red-400">Valor Despesas</p>
                                                 </div>
-                                                <h3 class="text-red-300 text-3xl mt-4 mb-1 font-bold">
+                                                <h3 class="text-red-400 text-3xl mt-4 mb-1 font-bold">
                                                     R$ {{ formatPrice(expenditureTotal) }}
                                                 </h3>
                                             </div>
@@ -114,7 +114,7 @@
                                         <div class="absolute inset-0 transition duration-300 ease-in-out"></div>
                                         <div class="relative w-3/4 h-full px-4 sm:px-6 lg:px-4 flex items-center">
                                             <div>
-                                                <div class="text-red-300 text-lg flex space-x-2 items-center">
+                                                <div class="text-red-400 text-lg flex space-x-2 items-center">
                                                     <div class="rounded-md p-2 flex items-center">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                             fill="currentColor" class="bi bi-arrow-down-circle"
@@ -123,10 +123,10 @@
                                                                 d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
                                                         </svg>
                                                     </div>
-                                                    <p class="text-red-300">QTE Despesas</p>
+                                                    <p class="text-red-400">Simulação</p>
                                                 </div>
-                                                <h3 class="text-red-300 ml-4 text-3xl mt-4 mb-1 font-bold">
-                                                    {{ expenditureCount }}
+                                                <h3 class="text-red-400 ml-4 text-3xl mt-4 mb-1 font-bold">
+                                                    R${{ formatPrice(Simulate) }}
                                                 </h3>
                                             </div>
                                         </div>
@@ -139,6 +139,7 @@
                 </div>
             </div>
         </div>
+        <TableDueDate :data="due_date" class="mt-24"></TableDueDate>
     </AuthenticatedLayout>
 </template>
 
@@ -147,15 +148,16 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Inertia } from '@inertiajs/inertia';
 import { Head } from '@inertiajs/inertia-vue3';
 import { ref,onMounted } from 'vue'
+import TableDueDate from './ComponentsPage/TableDueDate.vue';
 
 const props = defineProps([
     'SumValues',
+    'Simulate',
     'expenditureTotal',
     'earningTotal',
-    'expenditureCount',
-    'earningCount',
     'expenditureCountPayed',
-    'expenditurePayed'
+    'expenditurePayed',
+    'due_date',
 ])
 
 function formatPrice(value) {
@@ -170,8 +172,6 @@ function routeExpenditure() {
 function routeEarning() {
     Inertia.get('/earning')
 }
-
-//const profit = ref(Boolean)
 
 const loss = props.expenditurePayed > props.earningTotal;
 

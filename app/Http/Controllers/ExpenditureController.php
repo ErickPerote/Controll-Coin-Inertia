@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expenditure;
-use App\Models\User;
-use App\Policies\ExpenditurePolicy;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ExpenditureController extends Controller
@@ -22,7 +20,10 @@ class ExpenditureController extends Controller
 
         $expenditure = Expenditure::all()->where('user_id', $user->id)->toArray();
 
-        return Inertia::render('Expenditure/Expenditure', ['expenditure' => $expenditure]);
+        return Inertia::render('Expenditure/Expenditure', 
+            [
+                'expenditure' => $expenditure,
+            ]);
     }
 
     /**
@@ -89,7 +90,7 @@ class ExpenditureController extends Controller
     {
         $expenditure->name = $request->name;
         $expenditure->value = $request->value;
-        $expenditure->value = $request->value;
+        $expenditure->due_date = $request->due_date;
         $expenditure->status = $request->status;
         $expenditure->save();
 
