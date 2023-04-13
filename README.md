@@ -23,7 +23,7 @@ Install the dependencies and devDependencies and start the server.
 
 ```sh
 cd Controll-Coin-Inertia
-composer requier 
+composer require 
 yarn
 ```
 
